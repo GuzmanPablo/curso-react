@@ -1,2 +1,3 @@
-# curso-react
-Curso de React de platzi
+#React
+
+Repositorio del proyecto de React de platzi.
