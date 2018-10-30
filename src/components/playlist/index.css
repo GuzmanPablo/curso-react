@@ -1,0 +1,11 @@
+.playlist {
+	padding-bottom: 20px;
+	width: 100%;
+}
+
+.playlist__container {
+	width: auto;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}

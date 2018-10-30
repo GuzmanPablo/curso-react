@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { render } from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import data from './api.json';
+import PlaylistMain from './components/main/index';
+import './styles/reset.css';
+
+render(<PlaylistMain data={data} />, document.getElementById('root'));
+
 registerServiceWorker();
