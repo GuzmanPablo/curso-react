@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 import data from './api.json';
-import PlaylistMain from './components/main/index';
+import Playlist from './playlist/components/main/index';
 import './styles/reset.css';
 
-render(<PlaylistMain data={data} />, document.getElementById('root'));
+render(<Playlist data={data} />, document.getElementById('root'));
 
 registerServiceWorker();

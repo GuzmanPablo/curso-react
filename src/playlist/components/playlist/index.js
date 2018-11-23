@@ -11,7 +11,11 @@ function Playlist(props) {
 			<p className="playlist__text">{description}</p>
 			<h2 className="playlist__text playlist__text--title">{title}</h2>
 			<div className="playlist__container">
-			{ playlist.map((item) => <Media {...item} key={item.id} cover='https://picsum.photos/280/120/?ramdon' />) }
+			{
+				playlist.map((item) => {
+					return <Media {...item} key={item.id} />
+				})
+			}
 			</div>
 		</div>
 	);
