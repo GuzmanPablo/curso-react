@@ -16,7 +16,10 @@ class Media extends PureComponent {
 	}
 
 	render() {
-		const { props: { title, cover }, state: { author } } = this;
+		const {
+			props: { title, cover },
+			state: { author }
+		} = this;
 
 		return (
 			<div className="media" onClick={this.handlerClick}>
