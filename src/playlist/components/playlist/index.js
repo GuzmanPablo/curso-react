@@ -1,23 +1,20 @@
 import React from 'react';
 import Media from '../media/index';
-
-import './index.css';
+import { Content, Wrapper, Description, Title } from './style';
 
 function Playlist(props) {
 	const { description, title, playlist } = props;
 
 	return (
-		<div className="playlist">
-			<p className="playlist__text">{description}</p>
-			<h2 className="playlist__text playlist__text--title">{title}</h2>
-			<div className="playlist__container">
+		<Content>
+			<Description>{description}</Description>
+			<Title>{title}</Title>
+			<Wrapper>
 			{
-				playlist.map((item) => {
-					return <Media {...item} key={item.id} />
-				})
+				playlist.map(item => <Media {...item} key={item.id} />)
 			}
-			</div>
-		</div>
+			</Wrapper>
+		</Content>
 	);
 }
 

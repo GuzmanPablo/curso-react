@@ -1,15 +1,17 @@
 import React from 'react';
 
-import './index.css';
+import Main from './style';
 import Playlist from '../playlist';
 
 function PlaylistMain(props) {
 	const { categories } = props.data;
-	
+
 	return (
-		<main>
-			{ categories.map((item) => <Playlist {...item} key={item.id} />) }
-		</main>
+		<Main>
+		{
+			categories.map(item => <Playlist {...item} key = {item.id} />)
+		}
+		</Main>
 	);
 }
 
