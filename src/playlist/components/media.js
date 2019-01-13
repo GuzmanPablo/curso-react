@@ -1,8 +1,6 @@
 import React,  { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-import Pause from '../../../icons/component/Pause';
-import { Container, Author, ImageWrapper, Title, ContentWrapper } from './style';
+import { Container, Author, ImageWrapper, Title, ContentWrapper } from '../styles/media';
 
 class Media extends PureComponent {
 	state = {
