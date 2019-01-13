@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Theme = {
 	colors: {
 		primary: {
-			500: ''
+			500: '#171c30'
 		},
 		secundary: {
 			500: ''
