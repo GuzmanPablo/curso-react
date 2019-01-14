@@ -7,6 +7,9 @@ const Theme = {
 		},
 		secundary: {
 			500: ''
+		},
+		grey: {
+			100: '#e1e1e1'
 		}
 	},
 	fonts: styled.p`

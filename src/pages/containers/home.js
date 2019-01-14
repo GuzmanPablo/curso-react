@@ -4,9 +4,10 @@ import Related from '../components/related'
 import HomeLayout from '../components/home-layout';
 
 import Categories from '../../categories/component/categories';
-import ModalContainer from '../../widgets/container/modal';
 import Modal from '../../widgets/component/modal';
-import HandlerError from '../../error/container/handler-error'
+import HandlerError from '../../error/container/handler-error';
+import ModalContainer from '../../widgets/container/modal';
+import SearchContainer from '../../widgets/container/search';
 
 class Home extends Component {
 
@@ -25,6 +26,7 @@ class Home extends Component {
 			<HandlerError>
 				<HomeLayout>
 					<Related />
+					<SearchContainer />
 					<Categories
 						categories={this.props.data.categories}
 						handleModalToggle={this.handleToggleModal}

@@ -4,21 +4,20 @@ import RegularError from '../component/regular-error';
 class HandlerError extends Component {
 	state = {
 		error: false,
-		stack: null,
 		message: null
 	}
 
 	componentDidCatch(error, reason) {
+		console.warn(error, reason)
 		this.setState({
 			error: true,
-			stack: reason.componentStack,
-			message: error.message
+			message: error.message || 'Hay un error'
 		});
 	}
 
 	render() {
 		if (this.state.error)
-			return <RegularError stack={this.state.stack} message={this.state.message} />;
+			return <RegularError message={this.state.message} />;
 		
 		return this.props.children;
 	}

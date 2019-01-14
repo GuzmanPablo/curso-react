@@ -13,7 +13,7 @@ const Container = styled.div`
 	cursor: pointer;
 	display: inline-block;
 	margin-right: 10px;
-	border: solid 1px #000;
+	border: solid 1px ${Theme.colors.grey[100]};
 	padding: 0px;
 `;
 

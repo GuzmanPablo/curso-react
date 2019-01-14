@@ -10,7 +10,7 @@ const Container = styled.div`
 	grid-template-rows: 100px auto;
 	grid-template-columns: 20% 80%;
 	grid-template-areas:
-		'logo categories'
+		'logo search'
 		'realted categories';
 	background: ${primary[500] || '#000'};
 `;
