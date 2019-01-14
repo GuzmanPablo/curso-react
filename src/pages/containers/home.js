@@ -8,6 +8,7 @@ import Modal from '../../widgets/component/modal';
 import HandlerError from '../../error/container/handler-error';
 import ModalContainer from '../../widgets/container/modal';
 import SearchContainer from '../../widgets/container/search';
+import VideoPlayerContainer from '../../video-player/containers/video-player';
 
 class Home extends Component {
 
@@ -25,6 +26,7 @@ class Home extends Component {
 		return (
 			<HandlerError>
 				<HomeLayout>
+					<VideoPlayerContainer autoplay={true} />
 					<Related />
 					<SearchContainer />
 					<Categories
