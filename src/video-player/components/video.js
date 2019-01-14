@@ -14,9 +14,9 @@ class Video extends Component {
 
 	togglePlay() {
 		if(this.props.pause)
-			this.video.play();
+			return this.video.play();
 		else
-			this.video.pause();
+			return this.video.pause();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -25,12 +25,19 @@ class Video extends Component {
 	}
 
 	render() {
+		const {
+			handleLoadedMetaData,
+			autoplay,
+			src
+		} = this.props;
+
 		return (
 			<Container>
 				<Content
 					innerRef={element => this.video = element}
-					autoPlay={this.props.autoplay}
-					src={this.props.src}
+					onLoadedMetadata={handleLoadedMetaData}
+					autoPlay={autoplay}
+					src={src}
 				/>
 			</Container>
 		)

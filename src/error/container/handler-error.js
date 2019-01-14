@@ -8,7 +8,6 @@ class HandlerError extends Component {
 	}
 
 	componentDidCatch(error, reason) {
-		console.warn(error, reason)
 		this.setState({
 			error: true,
 			message: error.message || 'Hay un error'
