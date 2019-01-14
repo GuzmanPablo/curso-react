@@ -6,7 +6,13 @@ function Categories(props) {
 	return (
 		<Wrapper>
 		{
-			props.categories.map(item => <Category key={item.id} {...item} />)
+			props.categories.map(item => (
+				<Category
+					handleModalToggle={props.handleModalToggle}
+					key={item.id}
+					{...item}
+				/>
+			))
 		}
 		</Wrapper>
 	)

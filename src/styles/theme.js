@@ -10,7 +10,7 @@ const Theme = {
 		}
 	},
 	fonts: styled.p`
-		font-family: 'helvetica';
+		font-family: Monserrat;
 		line-height: 120%;
 		font-size: 12px;
 		padding: 0;

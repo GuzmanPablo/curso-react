@@ -15,12 +15,12 @@ class Media extends PureComponent {
 
 	render() {
 		const {
-			props: { title, cover },
+			props: { title, cover, handleModalToggle },
 			state: { author }
 		} = this;
 
 		return (
-			<Container onClick={this.handlerClick}>
+			<Container onClick={handleModalToggle}>
 				<ImageWrapper>
 					<img src={cover} alt={title} width="100%" />
 				</ImageWrapper>
