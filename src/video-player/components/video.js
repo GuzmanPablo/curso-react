@@ -27,6 +27,8 @@ class Video extends Component {
 	render() {
 		const {
 			handleLoadedMetaData,
+			handleToggleSeeked,
+			handleTimeUpdate,
 			autoplay,
 			src
 		} = this.props;
@@ -36,6 +38,9 @@ class Video extends Component {
 				<Content
 					innerRef={element => this.video = element}
 					onLoadedMetadata={handleLoadedMetaData}
+					onTimeUpdate={handleTimeUpdate}
+					onSeeking={handleToggleSeeked}
+					onSeeked={handleToggleSeeked}
 					autoPlay={autoplay}
 					src={src}
 				/>

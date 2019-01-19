@@ -9,14 +9,10 @@ const Container = styled.div`
 	align-items: center;
 `;
 
-function Timer(props) {
-	const { currentTime, duration } = props;
+function Spinner({ active }) {
+	if(!active) return false;
 
-	return (
-		<Container>
-			<p>{currentTime} / {duration}</p>
-		</Container>
-	)
+	return <h2>Cargando...</h2>;
 }
 
-export default Timer;
+export default Spinner;
