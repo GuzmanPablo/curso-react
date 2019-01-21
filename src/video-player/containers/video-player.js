@@ -7,6 +7,8 @@ import Timer from '../components/timer';
 import ContainerControls from '../components/video-player-controls';
 import ProgressBar from '../components/progress-bar';
 import Spinner from '../components/spinner';
+import Volume from '../components/volume';
+import FullScreen from '../components/full-screen';
 
 class VideoPlayerContainer extends Component {
 
@@ -18,14 +20,8 @@ class VideoPlayerContainer extends Component {
 	}
 
 	handleToggleClick = () => {
-		this.setState({
-			pause: !this.state.pause
-		})
-	}
-
-	handleProgressChange = event => {
-		const { value } = event.target;
-		this.video.currentTime = value;
+		const pause = !this.state.pause;
+		this.setState({ pause });
 	}
 
 	handleLoadedMetaData = event => {
@@ -40,9 +36,38 @@ class VideoPlayerContainer extends Component {
 	}
 
 	handleToggleSeeked = () => {
-		this.setState({
-			seeking: !this.state.seeking
-		})
+		const seeking = !this.state.seeking;
+		this.setState({ seeking });
+	}
+
+	handleProgressChange = event => {
+		const { value: currentTime } = event.target;
+		Object.assign(this.video, { currentTime });
+	}
+
+	handleVolumeRange = event => {
+		const volume = event.target.value;
+		Object.assign(this.video, { volume });
+	}
+
+	handleToggleMute = () => {
+		const volume = !!this.video.volume ? 0 : 1;
+		Object.assign(this.video, { volume });
+	}
+
+	handleToggleFullScreen = () => {
+		const fullScreen = this.player.requestFullScreen
+			|| this.player.webkitRequestFullscreen
+			|| this.player.mozRequestFullScreen
+			|| this.player.msRequestFullscreen;
+		const exitFullScreen = this.player.exitFullScreen
+			|| this.player.webkitExitFullscreen
+			|| this.player.mozCancelFullScreen
+			|| this.player.msExitFullscreen;
+		const isFullScreen = document.fullscreen
+			|| document.webkitIsFullScreen
+			|| document.mozFullScreen;
+		return !isFullScreen ? fullScreen() : exitFullScreen();
 	}
 
 	static formattedTime(secs) {
@@ -57,9 +82,8 @@ class VideoPlayerContainer extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			pause: !this.props.autoplay
-		})
+		const pause = !this.props.autoplay;
+		this.setState({ pause });
 	}
 
 	render() {
@@ -72,7 +96,9 @@ class VideoPlayerContainer extends Component {
 		} = this.state;
 
 		return (
-			<VideoPlayer>
+			<VideoPlayer
+				innerRef={elem => this.player = elem}
+			>
 				<Spinner active={seeking}/>
 				<Video
 					handleLoadedMetaData={this.handleLoadedMetaData}
@@ -95,6 +121,13 @@ class VideoPlayerContainer extends Component {
 						handleProgressChange={this.handleProgressChange}
 						duration={duration}
 						value={currentTime}
+					/>
+					<Volume
+						handleVolumeRange={this.handleVolumeRange}
+						handleToggleMute={this.handleToggleMute}
+					/>
+					<FullScreen
+						handleToggleFullScreen={this.handleToggleFullScreen}
 					/>
 				</ContainerControls>
 			</VideoPlayer>
