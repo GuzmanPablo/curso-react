@@ -9,6 +9,7 @@ import ProgressBar from '../components/progress-bar';
 import Spinner from '../components/spinner';
 import Volume from '../components/volume';
 import FullScreen from '../components/full-screen';
+import Title from '../components/title';
 
 class VideoPlayerContainer extends Component {
 
@@ -16,7 +17,8 @@ class VideoPlayerContainer extends Component {
 		pause: true,
 		duration: 0,
 		currentTime: 0,
-		seeking: false
+		seeking: false,
+		volume: 1
 	}
 
 	handleToggleClick = () => {
@@ -48,26 +50,25 @@ class VideoPlayerContainer extends Component {
 	handleVolumeRange = event => {
 		const volume = event.target.value;
 		Object.assign(this.video, { volume });
+		this.setState({ volume });
 	}
 
 	handleToggleMute = () => {
 		const volume = !!this.video.volume ? 0 : 1;
 		Object.assign(this.video, { volume });
+		this.setState({ volume });
 	}
 
 	handleToggleFullScreen = () => {
-		const fullScreen = this.player.requestFullScreen
-			|| this.player.webkitRequestFullscreen
-			|| this.player.mozRequestFullScreen
-			|| this.player.msRequestFullscreen;
-		const exitFullScreen = this.player.exitFullScreen
-			|| this.player.webkitExitFullscreen
-			|| this.player.mozCancelFullScreen
-			|| this.player.msExitFullscreen;
-		const isFullScreen = document.fullscreen
-			|| document.webkitIsFullScreen
-			|| document.mozFullScreen;
-		return !isFullScreen ? fullScreen() : exitFullScreen();
+		const fullScreenKeys = ['requestFullscreen', 'webkitRequestFullscreen', 'mozRequestFullScreen', 'msRequestFullscreen'];
+		const exitFullScreenKeys = ['exitFullscreen', 'webkitExitFullScreen', 'webkitExitFullscreen', 'mozCancelFullScreen', 'msExitFullscreen'];
+		const isFullScreen = !!(document.fullscreen || document.webkitIsFullScreen || document.mozFullScreen);
+
+		const execute = (reference, keys) => keys.forEach(key => reference[key] && reference[key]());
+		const fullScreen = () => execute(this.player, fullScreenKeys);
+		const exitFullScreen = () => execute(document, exitFullScreenKeys);
+
+		return isFullScreen ? exitFullScreen() : fullScreen();
 	}
 
 	static formattedTime(secs) {
@@ -86,10 +87,17 @@ class VideoPlayerContainer extends Component {
 		this.setState({ pause });
 	}
 
+	setReference = element => {
+		this.player = element;
+	}
+
 	render() {
 		const self = VideoPlayerContainer;
+		const { media } = this.props;
+		console.warn(media);
 		const {
 			pause,
+			volume,
 			seeking,
 			duration,
 			currentTime
@@ -97,16 +105,17 @@ class VideoPlayerContainer extends Component {
 
 		return (
 			<VideoPlayer
-				innerRef={elem => this.player = elem}
+				setReference={this.setReference}
 			>
 				<Spinner active={seeking}/>
+				<Title title={media.title} />
 				<Video
 					handleLoadedMetaData={this.handleLoadedMetaData}
 					handleTimeUpdate={this.handleTimeUpdate}
 					handleToggleSeeked={this.handleToggleSeeked}
 					autoplay={this.props.autoplay}
 					pause={pause}
-					src='http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4'
+					src={media.src}
 				/>
 				<ContainerControls>
 					<PlayPause
@@ -125,6 +134,7 @@ class VideoPlayerContainer extends Component {
 					<Volume
 						handleVolumeRange={this.handleVolumeRange}
 						handleToggleMute={this.handleToggleMute}
+						value={volume}
 					/>
 					<FullScreen
 						handleToggleFullScreen={this.handleToggleFullScreen}

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-	width: inherit;
+	width: 100%;
 	height: auto;
 	position: relative;
 	z-index: 0;
@@ -10,7 +10,11 @@ const Container = styled.div`
 
 function VideoPlayer(props) {
 	return (
-		<Container>{props.children}</Container>
+		<Container
+			innerRef={props.setReference}
+		>
+		{props.children}
+		</Container>
 	)
 }
 

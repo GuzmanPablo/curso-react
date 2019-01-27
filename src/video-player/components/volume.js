@@ -4,6 +4,7 @@ import VolumeIcon from '../../icons/component/Volume';
 
 const Container = styled.div`
 	position: relative;
+	grid-area: volume;
 	width: 25px;
 	height: 25px;
 `;

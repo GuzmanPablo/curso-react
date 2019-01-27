@@ -10,7 +10,10 @@ function Category(props) {
 			<Description>{description}</Description>
 			<Title>{title}</Title>
 			<Wrapper>
-				<Playlist playlist={playlist} handleModalToggle={handleModalToggle} />
+				<Playlist
+					playlist={playlist}
+					handleModalToggle={handleModalToggle}
+				/>
 			</Wrapper>
 		</Content>
 	)

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+	grid-area: timer;
 	color: #fff;
 	padding: 5px;
 	display: flex;

@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+	grid-area: progress;
 	color: #fff;
-	padding: 5px;
+	padding: 5px 0px;
+	width: 98%;
 	display: flex;
 	font-size: 14px;
 	align-items: center;

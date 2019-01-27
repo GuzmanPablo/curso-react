@@ -5,6 +5,7 @@ import Play from '../../icons/component/Play';
 import Pause from '../../icons/component/Pause';
 
 const Container = styled.div`
+	grid-area: play;
 `;
 const Button = styled.button`
 	background: none;

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import FullScreenIcon from '../../icons/component/FullScreen';
 
 const Container = styled.div`
+	grid-area: fullscreen;
+	justify-self: center;
+	cursor: pointer;
 `;
 
 function FullScreen(props) {

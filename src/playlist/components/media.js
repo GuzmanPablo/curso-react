@@ -8,19 +8,17 @@ class Media extends PureComponent {
 	}
 
 	handlerClick = () => {
-		this.setState({
-			author: `> ${this.props.author} <`
-		});
+		this.props.handleModalToggle(this.props)
 	}
 
 	render() {
 		const {
-			props: { title, cover, handleModalToggle },
+			props: { title, cover },
 			state: { author }
 		} = this;
 
 		return (
-			<Container onClick={handleModalToggle}>
+			<Container onClick={this.handlerClick}>
 				<ImageWrapper>
 					<img src={cover} alt={title} width="100%" />
 				</ImageWrapper>

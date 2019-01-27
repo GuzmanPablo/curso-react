@@ -14,11 +14,13 @@ class Home extends Component {
 
 	state = {
 		modal: false,
+		media: null
 	}
 
-	handleToggleModal = () => {
+	handleToggleModal = (media) => {
 		this.setState({
-			modal: !this.state.modal
+			modal: !this.state.modal,
+			media: media
 		})
 	}
 
@@ -26,7 +28,6 @@ class Home extends Component {
 		return (
 			<HandlerError>
 				<HomeLayout>
-					<VideoPlayerContainer autoplay={true} />
 					<Related />
 					<SearchContainer />
 					<Categories
@@ -37,8 +38,10 @@ class Home extends Component {
 						this.state.modal &&
 						<ModalContainer>
 							<Modal handleClick={this.handleToggleModal}>
-								<h2>Esto es un portal</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a neque aliquet, pellentesque orci ut, dignissim tellus. Donec nec felis quis elit volutpat tincidunt vel vel libero. Pellentesque vel sodales elit. Nunc mollis leo felis. Donec suscipit ullamcorper tincidunt. Phasellus luctus lacus ut dui pellentesque fermentum. Nunc varius nunc nec arcu finibus varius. Phasellus condimentum tortor at fringilla euismod.</p>
+								<VideoPlayerContainer
+									media={this.state.media}
+									autoplay={true}
+								/>
 							</Modal>
 						</ModalContainer>
 					}
